@@ -1,14 +1,29 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
 
 func main() {
+	_, err := gorm.Open(
+		"postgres",
+		fmt.Sprintf(
+			"host=%s port=%d user=%s dbname=%s password=%s sslmode=disable",
+			"localhost", 5432, "postgres", "gqlgen-echo-sample", "postgres",
+		),
+	)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	e := echo.New()
 
 	e.Use(middleware.Logger())
@@ -16,7 +31,7 @@ func main() {
 
 	e.GET("/", welcome())
 
-	err := e.Start(":3000")
+	err = e.Start(":3000")
 	if err != nil {
 		log.Fatalln(err)
 	}
