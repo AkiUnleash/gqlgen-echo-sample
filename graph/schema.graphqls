@@ -15,3 +15,7 @@ input NewTask {
 type Mutation {
   createTask(input: NewTask!): Task!
 }
+
+type Query {
+  tasks: [Task!]!
+}

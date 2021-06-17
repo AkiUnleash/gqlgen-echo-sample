@@ -25,7 +25,19 @@ func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) 
 	return &task, nil
 }
 
+func (r *queryResolver) Tasks(ctx context.Context) ([]*model.Task, error) {
+	tasks := []*model.Task{}
+
+	r.DB.Find(&tasks)
+
+	return tasks, nil
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
+// Query returns generated.QueryResolver implementation.
+func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
+
 type mutationResolver struct{ *Resolver }
+type queryResolver struct{ *Resolver }
