@@ -1,3 +1,0 @@
-development:
-  driver: postgres
-  open: user={postgres} password={postgres} dbname=gqlgen-echo-sample sslmode=disable
