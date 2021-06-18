@@ -7,15 +7,31 @@ type Task {
   updated_at: String!
 }
 
+type Account {
+  id: ID!
+  name: String!
+  password: String!
+  completed: Int!
+  created_at: String!
+  updated_at: String!
+}
+
 input NewTask {
   title: String!
   note: String!
 }
 
+input NewAccount {
+  name: String!
+  password: String!
+}
+
 type Mutation {
   createTask(input: NewTask!): Task!
+  createAccount(input: NewAccount!): Account!
 }
 
 type Query {
   tasks: [Task!]!
+  Accounts: [Account!]!
 }

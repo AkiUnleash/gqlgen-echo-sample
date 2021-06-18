@@ -25,12 +25,35 @@ func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) 
 	return &task, nil
 }
 
+func (r *mutationResolver) CreateAccount(ctx context.Context, input model.NewAccount) (*model.Account, error) {
+	timestamp := time.Now().Format("2006-01-02 15:04:05")
+
+	account := model.Account{
+		Name:      input.Name,
+		Password:  input.Password,
+		Completed: 0,
+		CreatedAt: timestamp,
+		UpdatedAt: timestamp,
+	}
+	r.DB.Create(&account)
+
+	return &account, nil
+}
+
 func (r *queryResolver) Tasks(ctx context.Context) ([]*model.Task, error) {
 	tasks := []*model.Task{}
 
 	r.DB.Find(&tasks)
 
 	return tasks, nil
+}
+
+func (r *queryResolver) Accounts(ctx context.Context) ([]*model.Account, error) {
+	accounts := []*model.Account{}
+
+	r.DB.Find(&accounts)
+
+	return accounts, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
