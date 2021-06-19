@@ -3,7 +3,7 @@
 CREATE TABLE accounts (
   id SERIAL NOT NULL,
   name varchar(255) DEFAULT NULL,
-  password varchar(255) DEFAULT NULL,
+  password bytea DEFAULT NULL,
   completed integer DEFAULT 0,
   created_at TIMESTAMP DEFAULT NULL,
   updated_at TIMESTAMP DEFAULT NULL,

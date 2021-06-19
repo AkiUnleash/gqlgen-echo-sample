@@ -10,11 +10,13 @@ type Task {
 type Account {
   id: ID!
   name: String!
-  password: String!
+  password: Any!
   completed: Int!
   created_at: String!
   updated_at: String!
 }
+
+scalar Any
 
 input NewTask {
   title: String!

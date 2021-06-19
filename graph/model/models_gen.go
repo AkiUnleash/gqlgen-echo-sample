@@ -3,12 +3,12 @@
 package model
 
 type Account struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Password  string `json:"password"`
-	Completed int    `json:"completed"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
+	ID        string      `json:"id"`
+	Name      string      `json:"name"`
+	Password  interface{} `json:"password"`
+	Completed int         `json:"completed"`
+	CreatedAt string      `json:"created_at"`
+	UpdatedAt string      `json:"updated_at"`
 }
 
 type NewAccount struct {
