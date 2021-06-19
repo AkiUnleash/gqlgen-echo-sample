@@ -8,6 +8,8 @@ import (
 	"gqlgen-echo-sample/graph/generated"
 	"gqlgen-echo-sample/graph/model"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) (*model.Task, error) {
@@ -28,12 +30,12 @@ func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) 
 func (r *mutationResolver) CreateAccount(ctx context.Context, input model.NewAccount) (*model.Account, error) {
 	timestamp := time.Now().Format("2006-01-02 15:04:05")
 
-	// password, _ := bcrypt.GenerateFromPassword([]byte(input.Password), 14)
+	password, _ := bcrypt.GenerateFromPassword([]byte(input.Password), 14)
 
 	account := model.Account{
-		Name: input.Name,
-		// Password:  password,
-		Password:  input.Password,
+		Name:     input.Name,
+		Password: password,
+		// Password:  input.Password,
 		Completed: 0,
 		CreatedAt: timestamp,
 		UpdatedAt: timestamp,
