@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+// タスクの追加
 func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) (*model.Task, error) {
 	timestamp := time.Now().Format("2006-01-02 15:04:05")
 
@@ -25,6 +26,7 @@ func (r *mutationResolver) CreateTask(ctx context.Context, input model.NewTask) 
 	return &task, nil
 }
 
+// アカウントの追加
 func (r *mutationResolver) CreateAccount(ctx context.Context, input model.NewAccount) (*model.Account, error) {
 	timestamp := time.Now().Format("2006-01-02 15:04:05")
 
@@ -40,6 +42,7 @@ func (r *mutationResolver) CreateAccount(ctx context.Context, input model.NewAcc
 	return &account, nil
 }
 
+// タスクの一覧
 func (r *queryResolver) Tasks(ctx context.Context) ([]*model.Task, error) {
 	tasks := []*model.Task{}
 
@@ -48,6 +51,7 @@ func (r *queryResolver) Tasks(ctx context.Context) ([]*model.Task, error) {
 	return tasks, nil
 }
 
+// アカウントの一覧
 func (r *queryResolver) Accounts(ctx context.Context) ([]*model.Account, error) {
 	accounts := []*model.Account{}
 
